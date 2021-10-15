@@ -3,7 +3,7 @@
 from django.db import migrations
 import pandas as pd
 
-planilha = pd.read_excel('D:/Repositorio/Analise_de_dados/IMD_ movies/filmes.xlsx') 
+planilha = pd.read_excel('./filmes.xlsx') 
 
 
 def create_data(apps, schema_editor):
