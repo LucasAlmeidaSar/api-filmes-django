@@ -1,5 +1,10 @@
 import os
 from pathlib import Path
+from typing import cast
+import django_on_heroku
+
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -12,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-44t=$&6l73-($$*mo2q#4^*mtza-jeq(am12oag&mp(rnxw+1#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool, default=False)
 
 ALLOWED_HOSTS = []
 
@@ -120,3 +125,5 @@ REST_FRAMEWORK = {
   'DEFAULT_PERMISSION_CLASSES' : ('rest_framework.permissions.IsAuthenticatedOrReadOnly',),
   'DEFAULT_FILTER_BACKENDS' : ('django_filters.rest_framework.DjangoFilterBackend',)
 }
+
+django_on_heroku.settings(locals())
